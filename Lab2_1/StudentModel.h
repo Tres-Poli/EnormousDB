@@ -37,4 +37,7 @@ public:
 	std::string LastChangeDate;
 
 	int Smart;
+
+	bool Resident;
+	int FamilyIncome;
 };

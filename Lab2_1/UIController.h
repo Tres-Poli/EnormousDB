@@ -81,6 +81,7 @@ public:
 		std::cout << "||  Group #: " << student->GroupNum << std::endl;
 		std::cout << "||  List #: " << student->ListNum << std::endl;
 		std::cout << "||  Education format: " << eduForm << std::endl;
+		std::cout << "||  Smart: " << student->Smart << std::endl;
 		std::cout << "||" << std::endl;
 		for (int i = 0; i < 3; ++i)
 		{
@@ -90,6 +91,8 @@ public:
 		{
 			std::cout << "||  " << i - 2 << " diff: " << student->SessionResults[i] << std::endl;
 		}
+		std::cout << "||  Resident: " << student->Resident << std::endl;
+		std::cout << "||  Family income: " << student->FamilyIncome << std::endl;
 		std::cout << "||  Last modify: " << student->LastChangeDate << std::endl;
 		std::cout << "==================================================================" << std::endl;
 	}
@@ -138,6 +141,16 @@ public:
 		}
 		toSend->SessionResults = sessionResults;
 
+		std::cout << "Enter is student is resident:\t";
+		std::string resident;
+		std::cin >> resident;
+		toSend->Resident = atoi(resident.c_str());
+
+		std::cout << "Enter student's family income:\t";
+		std::string income;
+		std::cin >> income;
+		toSend->FamilyIncome = atoi(income.c_str());
+
 		return toSend;
 	}
 	// Метод для загрузки узлов из файла
@@ -168,7 +181,9 @@ public:
 			} std::getline(fileStream, buff);
 			node->SessionResults = sessionMarks;
 			node->EduFormat = DefineEduForm(buff); buff.clear(); std::getline(fileStream, buff);
-			node->LastChangeDate = buff;
+			node->LastChangeDate = buff; buff.clear(); std::getline(fileStream, buff);
+			node->Resident = std::atoi(buff.c_str()); buff.clear(); std::getline(fileStream, buff);
+			node->FamilyIncome = std::atoi(buff.c_str()); buff.clear();
 			result[counter] = node;
 			counter++;
 		}

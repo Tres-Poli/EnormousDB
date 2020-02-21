@@ -23,6 +23,7 @@ private:
 	const char* _showTop = "show_top";
 	const char* _loadFromFile = "load_from_file";
 	const char* _showChangedToday = "show_changed_today";
+	const char* _showTopForHostel = "show_top_hostel";
 
 	const char* _changeGroupNum = "change_group_num";
 	const char* _changeListNum = "change_list_num";
@@ -48,6 +49,7 @@ private:
 		ShowWithNumList,
 		ShowChangedToday,
 		ShowTop,
+		ShowTopHostel,
 		ChangeListNum,
 		ChangeEduForm,
 		ChangeGroupNum,
@@ -78,6 +80,7 @@ private:
 		if (command == _changeListNum)			return ChangeListNum;
 		if (command == _changeEduForm)			return ChangeEduForm;
 		if (command == _showChangedToday)		return ShowChangedToday;
+		if (command == _showTopForHostel)		return ShowTopHostel;
 		return Unrecognized;
 	}
 
@@ -180,6 +183,17 @@ private:
 			}
 			int size = std::atoi(command[1].c_str());
 			_strategies->ShowTop(size);
+			break;
+		}
+		case ShowTopHostel:
+		{
+			if (command.size() != 2)
+			{
+				_ui->ErrorMessage("Top size is required");
+				return false;
+			}
+			int size = std::atoi(command[1].c_str());
+			_strategies->ShowTopHostel(size);
 			break;
 		}
 		case LoadFromFile:

@@ -101,6 +101,11 @@ public:
 		_db->GetStorage()->PrintTop(sizeTop);
 	}
 
+	void ShowTopHostel(int sizeTop)
+	{
+		_db->GetStorage()->PrintTopForHostel(sizeTop);
+	}
+
 	void LoadFromFile(std::string fileName)
 	{
 		Student** fromFile = _ui->LoadFile(fileName);

@@ -35,6 +35,10 @@ public:
 		{
 			_currId++;
 			students[i]->id = _currId;
+			int smart = 0;
+			for (int j = 0; j < 8; ++j)
+				smart += students[i]->SessionResults[j];
+			students[i]->Smart = smart;
 		}
 		_storage->AddRange(students, size);
 	}

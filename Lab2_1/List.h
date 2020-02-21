@@ -25,30 +25,41 @@ private:
 		a = b;
 		b = buff;
 	}
-	int Partition(Student** arr, int low, int high)
+	int Partition(Student** arr, int low, int high, bool smart)
 	{
 		Student* pivot = arr[high];
 		int i = -1;
 
 		for (int j = 0; j <= high - 1; j++)
 		{
-			if (arr[j]->Smart <= pivot->Smart)
+			if (smart)
 			{
-				i++;
-				Swap(arr[i], arr[j]);
+				if (arr[j]->Smart <= pivot->Smart)
+				{
+					i++;
+					Swap(arr[i], arr[j]);
+				}
+			}
+			else
+			{
+				if (arr[j]->FamilyIncome <= pivot->FamilyIncome)
+				{
+					i++;
+					Swap(arr[i], arr[j]);
+				}
 			}
 		}
 		Swap(arr[i + 1], arr[high]);
 		return (i + 1);
 	}
-	void QuickSort(Student** arr, int low, int high)
+	void QuickSort(Student** arr, int low, int high, bool smart)
 	{
 		if (low < high)
 		{
-			int pi = Partition(arr, low, high);
+			int pi = Partition(arr, low, high, smart);
 
-			QuickSort(arr, low, pi - 1);
-			QuickSort(arr, pi + 1, high);
+			QuickSort(arr, low, pi - 1, smart);
+			QuickSort(arr, pi + 1, high, smart);
 		}
 	}
 public: 
@@ -225,19 +236,46 @@ public:
 	}
 	void PrintTop(int topSize)
 	{
-		Student** arr = ToArray();
-		Student* point = arr[_size - 1];
-		Student* point1 = arr[_size - 2];
-		Student* point2 = arr[_size - 3];
-		QuickSort(arr, 0, _size - 1);
+		Student** arr = ToArray(_size);
+		QuickSort(arr, 0, _size - 1, true);
 		if (_size <= topSize) PrintAllList();
 		else for (int i = 0; i < topSize; ++i)
 				_ui->PrintStudent(arr[i]);
 		delete(arr);
 	}
-	Student** ToArray()
+	void PrintTopForHostel (int topSize)
 	{
-		Student** arr = new Student*[_size];
+		List* newList = GetRidOfNotResidents();
+		Student** arr = newList->ToArray(newList->_size);
+		QuickSort(arr, 0, newList->_size - 1, false);
+		int limiter = 0;
+		if (_size <= topSize) PrintAllList();
+		else for (int i = topSize - 1; i >= 0; --i)
+		{
+			_ui->PrintStudent(arr[i]);
+		}
+		delete(arr);
+		delete(newList);
+	}
+	List* GetRidOfNotResidents()
+	{
+		List* newList = new List();
+		Node* curr = _begin;
+		while (curr != nullptr)
+		{
+			if (curr->Value->Resident == false)
+			{
+				curr = curr->Next;
+				continue;
+			}
+			newList->AddBack(curr->Value);
+			curr = curr->Next;
+		}
+		return newList;
+	}
+	Student** ToArray(int size)
+	{
+		Student** arr = new Student*[size];
 		int counter = 0;
 		Node* curr = _begin;
 		while (curr != nullptr)
