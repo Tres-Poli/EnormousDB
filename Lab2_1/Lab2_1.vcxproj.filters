@@ -23,9 +23,6 @@
     <ClInclude Include="CommandInterpreter.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="DateTime.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="DataBaseController.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -36,6 +33,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="UIController.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="StudentModel.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

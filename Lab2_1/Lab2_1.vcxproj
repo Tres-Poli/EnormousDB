@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
+  	<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <VCProjectVersion>16.0</VCProjectVersion>
     <ProjectGuid>{BC440B1F-861B-4F9C-9CD0-886F37ED51C9}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
@@ -27,12 +28,14 @@
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+  	<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+  	<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
@@ -40,12 +43,14 @@
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+  	<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+  	<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
@@ -101,7 +106,7 @@
     <ClCompile>
       <PrecompiledHeader>
       </PrecompiledHeader>
-      <WarningLevel>Level3</WarningLevel>
+      <WarningLevel>TurnOffAllWarnings</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -158,9 +163,9 @@
   <ItemGroup>
     <ClInclude Include="CommandInterpreter.h" />
     <ClInclude Include="DataBaseController.h" />
-    <ClInclude Include="DateTime.h" />
     <ClInclude Include="List.h" />
     <ClInclude Include="Strategies.h" />
+    <ClInclude Include="StudentModel.h" />
     <ClInclude Include="UIController.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

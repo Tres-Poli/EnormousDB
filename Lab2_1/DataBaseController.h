@@ -1,81 +1,53 @@
 #pragma once
 
 #include <string>
-#include "DateTime.h"
 #include "List.h"
-
-
-enum Sex
-{
-	Male,
-	Female
-};
-
-enum EduFormat
-{
-	FullTime,
-	Evening,
-	Distance
-};
-
-class SessionResults
-{
-public:
-	short Exam1;
-	short Exam2;
-	short Exam3;
-
-	short Diff1;
-	short Diff2;
-	short Diff3;
-	short Diff4;
-	short Diff5;
-};
-
-class Student
-{
-public:
-	int id;
-
-	std::string LastName;
-	std::string FirstName;
-	std::string ExtName;
-
-	Sex Sex;
-
-	int GroupNum;
-	int ListNum;
-
-	SessionResults* SessionResults;
-
-	EduFormat EduFormat;
-
-	DateTime* LastChangeDate;
-};
+#include "StudentModel.h"
+#include <ctime>
 
 class DataBaseController
 {
 private:
-	static List<Student> _storage;
-	static int _currId;
+	List* _storage = new List();
+	int _currId;
 
 public:
 	DataBaseController()
 	{
-		_currId = 1;
+		_currId = 0;
+	}
+	~DataBaseController()
+	{
+		delete(_storage);
 	}
 	void AddNode(Student* student)
 	{
 		_currId++;
 		student->id = _currId;
-		_storage.AddBack(student);
+		student->Smart = 0;
+		for (int i = 0; i < 8; ++i)
+			student->Smart += student->SessionResults[i];
+		_storage->AddBack(student);
+	}
+	void AddRange(Student** students, int size)
+	{
+		for (int i = 0; i < size; ++i)
+		{
+			_currId++;
+			students[i]->id = _currId;
+		}
+		_storage->AddRange(students, size);
 	}
 	Student* GetById(int id)
 	{
-		
+		return _storage->FindById(id);
 	}
-	List<Student>* GetStorage()
+	int* GetSexCount()
 	{
-		return &_storage;
+		return _storage->CountSex();
+	}
+	List* GetStorage()
+	{
+		return _storage;
 	}
 };
