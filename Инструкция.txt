@@ -1,0 +1,14 @@
+Commands list:
+load_student - ввод студента руками и загрузка в память
+add_student - добавление в базу загруженного студента
+show_student #int - вывод данных о студенте с id #int
+show_with_scholarship - вывод студентов со стипендией
+show_with_marks #int1 (#int2) - вывод студентов с оценками #int1 или с оценками #int1 и #int2
+show_with_num_in_list #int - вывод студентов с номером списка #int
+show_top #int - вывод #int самых умных студентов 
+load_from_file #string - загрузка с базу студентов из фалы #string
+show_changed_today - вывод студентов, которые были изменены сегодня
+show_top_hostel #int - вывод #int студентов в очереди на общежитие
+change_list_num - изменение номера в списке загруженного(!) студента. Комманда show_student #int также загружает студента в буффер
+change_group_num - изменение номера группы
+change_edu_format - изменение формы обучения

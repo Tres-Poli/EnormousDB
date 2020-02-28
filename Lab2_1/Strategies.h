@@ -114,6 +114,11 @@ public:
 
 	void ChangeGroup(int group)
 	{
+		if (_loadedStudent == nullptr)
+		{
+			_ui->ErrorMessage("Student should be loaded");
+			return;
+		}
 		time_t seconds = time(NULL);
 		tm timeInfo; char str[20];
 		if (localtime_s(&timeInfo, &seconds) == 0) strftime(str, sizeof(str), "%e/%m/%Y", &timeInfo);
@@ -127,6 +132,11 @@ public:
 	}
 	void ChangeListNum(int num)
 	{
+		if (_loadedStudent == nullptr)
+		{
+			_ui->ErrorMessage("Student should be loaded");
+			return;
+		}
 		time_t seconds = time(NULL);
 		tm timeInfo; char str[20];
 		if (localtime_s(&timeInfo, &seconds) == 0) strftime(str, sizeof(str), "%e/%m/%Y", &timeInfo);
@@ -140,6 +150,11 @@ public:
 	}
 	void ChangeEduForm(std::string form)
 	{
+		if (_loadedStudent == nullptr)
+		{
+			_ui->ErrorMessage("Student should be loaded");
+			return;
+		}
 		time_t seconds = time(NULL);
 		tm timeInfo; char str[20];
 		if (localtime_s(&timeInfo, &seconds) == 0) strftime(str, sizeof(str), "%e/%m/%Y", &timeInfo);
